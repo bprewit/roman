@@ -15,12 +15,15 @@ Somewhat earlier versions of these programs might work.
 Then, do as follows:
 
 $ autoreconf --install
+
 $ ./configure
+
 $ make
+
 $ make check
 
-Don't do "make install" unless you want to install the roman example.
+Don't do "make install" unless you want to install the example.
 
-roman.c and roman.h are built as a library.  src/main.c:main() is a
-client of libroman.la, just as tests/check_roman.c:main() is a client
-of libroman.la
+roman.c and roman.h are built as a library libroman.la  
+src/main.c:main() and tests/check_roman.c:main are clients.
+
