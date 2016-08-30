@@ -34,6 +34,7 @@
 # Debug files
 *.dSYM/
 *.su
+*.log
 
 # Tooling & Junk
 Makefile
@@ -58,3 +59,4 @@ tests/.libs/
 tests/Makefile
 tests/Makefile.in
 tests/check_roman
+tests/check_roman.trs
