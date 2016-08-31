@@ -77,7 +77,13 @@ START_TEST(test_add_roman)
 }
 END_TEST
 
-
+START_TEST(test_subtract_roman)
+{
+	int rc = subtract_roman(result, "X", "III");
+	ck_assert_int_eq(rc, 0);
+	ck_assert_str_eq(result, "VII");
+}
+END_TEST
 
 Suite *test_suite(void)
 {

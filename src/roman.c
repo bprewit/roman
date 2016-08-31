@@ -152,3 +152,26 @@ int add_roman(char *dst, char *rn1, char *rn2)
 
 	return(rc);
 }
+
+
+int subtract_roman(char *dst, char *rn2, char *rn1)
+{
+	int n2, n1;
+	if((n1 = roman_to_int(rn1)) <= 0)
+	{
+		return(errno);
+	}
+	
+	if((n2 = roman_to_int(rn2)) <= 0)
+	{
+		return(errno);
+	}
+
+	if(n1 >= n2)
+	{
+		return(EDOM);
+	}
+
+	int rc = int_to_roman(dst, (n2 - n1));
+	return(rc);
+}
