@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #include "roman.h"
 
@@ -46,13 +47,17 @@ static ROMAN_T romans[] =
     {"I",      1},
 };
 
-static int errno;
+static const int tabsize = (sizeof(romans) / sizeof(ROMAN_T));
+// static int errno;
 
+
+/**
+ * utility function to lookup the numeric value of a roman numeral symbol
+ */
 static ROMAN_T *lookup_rn_symbol(char *sym)
 {
-    const int tabsize = (sizeof(romans) / sizeof(ROMAN_T));
-    for(int i = 0; i < tabsize; ++i)
-    {
+	for(int i = 0; i < tabsize; ++i)
+	{
         if(strncmp(romans[i].symbol, sym, strlen(romans[i].symbol)) == 0)
         {
             return(&romans[i]);
@@ -60,6 +65,7 @@ static ROMAN_T *lookup_rn_symbol(char *sym)
     }
     return(NULL);
 }
+
 
 /**
  * convert roman numerals from string "roman" to int
@@ -90,7 +96,7 @@ int roman_to_int(char *roman)
 	if(value > 3999 || value < 1)
 	{
 		value = -1;
-		errno = ERANGE:
+		errno = ERANGE;
 	}
 	else
 	{
@@ -100,13 +106,49 @@ int roman_to_int(char *roman)
 }
 
 /**
+ * convert value to string representing roman numeral
+ */
+int int_to_roman(char *dst, int val)
+{
+	if((val > 3999) || (val < 1))
+	{
+		errno = ERANGE;
+		return(-1);
+	}
+
+	for(int i = 0; ((i < tabsize) && (val > 0)); ++i)
+	{
+		if(val >= romans[i].value)
+		{
+			val -= romans[i].value;
+			strcat(dst, romans[i].symbol);
+		}
+	}
+
+	errno = 0;
+	return(0);
+}
+
+/**
  * add roman numeral n1 to n2
  * store roman numeral for sum in dst
  * return 0 on success or non-zero on error
  * set errno to ERANGE on error
  */
-int add_roman(char *n1, char *n2, char *dst)
+int add_roman(char *dst, char *rn1, char *rn2)
 {
-    sprintf(dst, "IV");
-    return(0);
+	int n1, n2;
+	if((n1 = roman_to_int(rn1)) <= 0)
+	{
+		return(errno);
+	}
+	
+	if((n2 = roman_to_int(rn2)) <= 0)
+	{
+		return(errno);
+	}
+
+	int rc = int_to_roman(dst, (n1 + n2));
+
+	return(rc);
 }

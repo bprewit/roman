@@ -23,23 +23,44 @@ void teardown(void)
     free(result);
 }
 
-START_TEST(test_add_roman)
+START_TEST(test_convert_int_to_roman)
 {
-    int rc = add_roman("II", "II", result);
-    ck_assert_int_eq(rc, 0);
-    ck_assert_str_eq(result, "IV");
+	char roman[1000];
+
+	int rc;
+
+	memset(roman, 0, sizeof(roman));
+	rc = int_to_roman(roman, 1);
+	ck_assert_int_eq(rc, 0);
+	ck_assert_str_eq(roman, "I");
+
+	memset(roman, 0, sizeof(roman));
+	rc = int_to_roman(roman, 2);
+	ck_assert_int_eq(rc, 0);
+	ck_assert_str_eq(roman, "II");
+
+	memset(roman, 0, sizeof(roman));
+	rc = int_to_roman(roman, 10);
+	ck_assert_int_eq(rc, 0);
+	ck_assert_str_eq(roman, "X");
+
+	memset(roman, 0, sizeof(roman));
+	rc = int_to_roman(roman, 3999);
+	ck_assert_int_eq(rc, 0);
+	ck_assert_str_eq(roman, "MMMCMXCIX");
 }
 END_TEST
 
 START_TEST(test_convert_roman_to_int)
 {
     int num;
-    char roman[1000];
-    memset(roman, 0, sizeof(roman));
     
-    um = roman_to_int("I");
+    num = roman_to_int("I");
     ck_assert_int_eq(num, 1);
     
+	num = roman_to_int("II");
+	ck_assert_int_eq(num, 2);
+
     num = roman_to_int("V");
     ck_assert_int_eq(num, 5);
     
@@ -47,6 +68,15 @@ START_TEST(test_convert_roman_to_int)
     ck_assert_int_eq(num, 3999);
 }
 END_TEST
+
+START_TEST(test_add_roman)
+{
+    int rc = add_roman(result, "II", "II");
+    ck_assert_int_eq(rc, 0);
+    ck_assert_str_eq(result, "IV");
+}
+END_TEST
+
 
 
 Suite *test_suite(void)
@@ -58,6 +88,7 @@ Suite *test_suite(void)
   
   tcase_add_test(core, test_add_roman);
   tcase_add_test(core, test_convert_roman_to_int);
+  tcase_add_test(core, test_convert_int_to_roman);
   
   suite_add_tcase(s, core);
 
