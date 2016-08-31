@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <check.h>
 #include "../src/roman.h"
@@ -30,6 +31,24 @@ START_TEST(test_add_roman)
 }
 END_TEST
 
+START_TEST(test_convert_roman_to_int)
+{
+    int num;
+    char roman[1000];
+    memset(roman, 0, sizeof(roman));
+    
+    um = roman_to_int("I");
+    ck_assert_int_eq(num, 1);
+    
+    num = roman_to_int("V");
+    ck_assert_int_eq(num, 5);
+    
+    num = roman_to_int("MMMCMXCIX");
+    ck_assert_int_eq(num, 3999);
+}
+END_TEST
+
+
 Suite *test_suite(void)
 {
   Suite *s = suite_create("Roman");
@@ -38,6 +57,7 @@ Suite *test_suite(void)
   tcase_add_checked_fixture(core, setup, teardown);
   
   tcase_add_test(core, test_add_roman);
+  tcase_add_test(core, test_convert_roman_to_int);
   
   suite_add_tcase(s, core);
 
