@@ -85,6 +85,35 @@ START_TEST(test_subtract_roman)
 }
 END_TEST
 
+START_TEST(test_long_roman)
+{
+	int num = roman_to_int("MMMDCCCLXXXVIII");
+	ck_assert_int_eq(num, 3888);
+}
+END_TEST
+
+START_TEST(test_empty_string)
+{
+	int num = roman_to_int("");
+	ck_assert_int_eq(num, -1);
+}
+END_TEST
+
+START_TEST(test_invalid_input)
+{
+	int num = roman_to_int("XYZZY");
+	ck_assert_int_eq(num, -1);
+}
+END_TEST
+
+START_TEST(test_null_input)
+{
+	char *sym = NULL;
+	int num = roman_to_int(sym);
+	ck_assert_int_eq(num, -1);
+}
+END_TEST
+
 Suite *test_suite(void)
 {
   Suite *s = suite_create("Roman");
@@ -95,7 +124,10 @@ Suite *test_suite(void)
   tcase_add_test(core, test_add_roman);
   tcase_add_test(core, test_convert_roman_to_int);
   tcase_add_test(core, test_convert_int_to_roman);
-  
+  tcase_add_test(core, test_long_roman);  
+  tcase_add_test(core, test_empty_string);
+  tcase_add_test(core, test_invalid_input);
+
   suite_add_tcase(s, core);
 
   return(s);

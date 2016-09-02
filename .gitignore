@@ -52,6 +52,7 @@ src/.deps/
 src/.libs/
 src/Makefile
 src/Makefile.in
+src/test-main.c
 src/main
 stamp-h1
 tests/.deps/
@@ -60,3 +61,4 @@ tests/Makefile
 tests/Makefile.in
 tests/check_roman
 tests/check_roman.trs
+

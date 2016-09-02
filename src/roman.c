@@ -15,9 +15,11 @@ typedef struct
 
 static ROMAN_T romans[] = 
 {
+	/* thousands symbols */
     {"MMM", 3000},
     {"MM",  2000},
     {"M",   1000},
+	/* hundreds symbols */
     {"CM",   900},
     {"CCM",  800},
     {"DCC",  700},
@@ -27,6 +29,7 @@ static ROMAN_T romans[] =
     {"CCC",  300},
     {"CC",   200},
     {"C",    100},
+	/* tens symbols */
     {"XC",    90},
     {"XXC",   80},
     {"LXX",   70},
@@ -36,6 +39,7 @@ static ROMAN_T romans[] =
     {"XXX",   30},
     {"XX",    20},
     {"X",     10},
+	/* ones symbols */
     {"IX",     9},
     {"IIX",    8},
     {"VII",    7},
@@ -48,8 +52,6 @@ static ROMAN_T romans[] =
 };
 
 static const int tabsize = (sizeof(romans) / sizeof(ROMAN_T));
-// static int errno;
-
 
 /**
  * utility function to lookup the numeric value of a roman numeral symbol
@@ -101,8 +103,8 @@ int roman_to_int(char *roman)
 	else
 	{
 		errno = 0;
-		return(value);
 	}
+	return(value);
 }
 
 /**
