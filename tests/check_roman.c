@@ -114,6 +114,15 @@ START_TEST(test_null_input)
 }
 END_TEST
 
+START_TEST(test_convert_zero)
+{
+	char *result;
+	result = calloc(16, sizeof(char));
+	int rc = int_to_roman(result, 0);
+	ck_assert_int_eq(rc, -1);
+}
+END_TEST
+
 Suite *test_suite(void)
 {
   Suite *s = suite_create("Roman");
@@ -127,6 +136,7 @@ Suite *test_suite(void)
   tcase_add_test(core, test_long_roman);  
   tcase_add_test(core, test_empty_string);
   tcase_add_test(core, test_invalid_input);
+  tcase_add_test(core, test_convert_zero);
 
   suite_add_tcase(s, core);
 
