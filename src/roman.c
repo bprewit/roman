@@ -76,6 +76,11 @@ static ROMAN_T *lookup_rn_symbol(char *sym)
 int roman_to_int(char *roman)
 {
     ROMAN_T *rn;
+	if(roman == NULL)
+	{
+		errno = EINVAL;
+		return(-1);
+	}
     char *p = roman;
     int value = 0;
     while(*p)

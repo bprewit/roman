@@ -131,11 +131,13 @@ Suite *test_suite(void)
   tcase_add_checked_fixture(core, setup, teardown);
   
   tcase_add_test(core, test_add_roman);
+  tcase_add_test(core, test_subtract_roman);
   tcase_add_test(core, test_convert_roman_to_int);
   tcase_add_test(core, test_convert_int_to_roman);
-  tcase_add_test(core, test_long_roman);  
+  tcase_add_test(core, test_long_roman);
   tcase_add_test(core, test_empty_string);
   tcase_add_test(core, test_invalid_input);
+  tcase_add_test(core, test_null_input);
   tcase_add_test(core, test_convert_zero);
 
   suite_add_tcase(s, core);
