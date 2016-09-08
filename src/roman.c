@@ -10,7 +10,7 @@ typedef unsigned int UINT;
 typedef struct 
 {
     char *symbol;
-    UINT value
+    UINT value;
 } ROMAN_T;
 
 static ROMAN_T romans[] = 
