@@ -46,4 +46,5 @@ AC_CONFIG_FILES([Makefile
                  src/Makefile
                  tests/Makefile])
 
+AM_CFLAGS="-ggdb -Wall -O0 -std=c99"
 AC_OUTPUT
