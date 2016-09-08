@@ -58,7 +58,8 @@ static const int tabsize = (sizeof(romans) / sizeof(ROMAN_T));
  */
 static ROMAN_T *lookup_rn_symbol(char *sym)
 {
-	for(int i = 0; i < tabsize; ++i)
+	int i;
+	for(i = 0; i < tabsize; ++i)
 	{
         if(strncmp(romans[i].symbol, sym, strlen(romans[i].symbol)) == 0)
         {
@@ -123,7 +124,8 @@ int int_to_roman(char *dst, int val)
 		return(-1);
 	}
 
-	for(int i = 0; ((i < tabsize) && (val > 0)); ++i)
+	int i;
+	for(i = 0; ((i < tabsize) && (val > 0)); ++i)
 	{
 		if(val >= romans[i].value)
 		{
