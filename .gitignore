@@ -38,9 +38,7 @@
 
 # Tooling & Junk
 autom4te.cache/
-build-aux/
 config.log
-config.status
 src/.deps/
 src/.libs/
 src/test-main.c
