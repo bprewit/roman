@@ -2,28 +2,14 @@
 
 Library to add/subtract roman numerals
 
-The build/test tooling is cloned from the "money example" from the Check tutorial.
-
-You need the following programs installed on your system:
-- Autoconf 2.59
-- Automake 1.9.6
-- Libtool 1.5.22
-- Check 0.9.3
-
-Somewhat earlier versions of these programs might work.
-
-Then, do as follows:
-
-$ autoreconf --install
-
-$ ./configure
+To build:
 
 $ make
 
+To run tests:
+
 $ make check
 
-Don't do "make install" unless you want to install the example.
-
 roman.c and roman.h are built as a library libroman.la  
-src/main.c:main() and tests/check_roman.c:main are clients.
+tests/check_roman.c:main are clients.
 
