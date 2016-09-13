@@ -1,7 +1,7 @@
 SUBDIRS = src tests
 
 .PHONY: all 
-all : subdirs check
+all : subdirs 
 
 .PHONY: subdirs $(SUBDIRS)
 subdirs: $(SUBDIRS)

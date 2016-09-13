@@ -1,5 +1,4 @@
 all: libroman
-#	gcc -O0 -Wall -ggdb -std=c99 -c roman.c
 
 libroman: roman.o
 	ar cru libroman.a roman.o
